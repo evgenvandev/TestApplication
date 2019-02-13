@@ -14,6 +14,62 @@ public class StartMain {
 
     public static void main(String[] args) {
 
+        /**
+         * Initializing and getting data base the contacts
+         */
+        DbContact dbContacts = getDbContact();
+
+
+        /*String findContact = findContact(args, dbContacts);
+        System.out.println(findContact);*/
+
+        /*System.out.println("Контактов в базе: " + dbContacts.countContacts());
+        dbContacts.displayContacts();*/
+
+        Scanner reader = new Scanner(System.in);
+        try {
+            String exit = "нет";
+            while (!exit.equals("да")) {
+                System.out.println("Введите Фамилию Имя Отчество:");
+                String lastName = reader.nextLine();
+                Contact findCon = dbContacts.findContact(lastName);
+                if (findCon != null){
+                    System.out.println(findCon.rangingPhones());
+                } else {
+                    System.out.println("Такой Фамилии Имени Отчества нет в базе данных.");
+                }
+                System.out.println("Выйти из программы : да/нет ?");
+                exit = reader.nextLine();
+            }
+        } finally {
+            reader.close();
+        }
+    }
+
+    public static String findContact(String[] args, DbContact dbContacts) {
+
+        String strRang = "";
+        for (String arg : args) {
+            if (arg != null) {
+                Contact findCon = dbContacts.findContact(arg);
+                if (findCon != null) {
+                    strRang = findCon.rangingPhones();
+                } else {
+                    strRang = "Такой Фамилии Имени Отчества нет в базе данных.";
+                }
+            } else {
+                System.out.println("Вы не ввели Фамилию Имя Отчество при запуске программы.");
+            }
+        }
+
+        return strRang;
+    }
+
+    /**
+     * Initializing and getting data base the contacts
+     * @return DbContact dbContacts
+     */
+    public static DbContact getDbContact() {
         List<String> phones1 = new ArrayList<String>();
         phones1.add(0, "+8 800 2000 500");
         phones1.add(1, "+8 800 200 600");
@@ -34,28 +90,6 @@ public class StartMain {
         for (Contact contact : contacts) {
             dbContacts.addContact(contact);
         }
-
-        System.out.println("Контактов в базе: " + dbContacts.countContacts());
-        dbContacts.displayContacts();
-
-        Scanner reader = new Scanner(System.in);
-        try {
-            String exit = "нет";
-            while (!exit.equals("да")) {
-                System.out.println("Введите Фамилию Имя Отчество:");
-                String lastName = reader.nextLine();
-                Contact findCon = dbContacts.findContact(lastName);
-                if (findCon != null){
-                    //String dbLastName = findCon.getLastName();
-                    System.out.println(findCon.rangingPhones());
-                } else {
-                    System.out.println("Такой Фамилии Имени Отчества нет в базе данных.");
-                }
-                System.out.println("Выйти из программы : да/нет ?");
-                exit = reader.nextLine();
-            }
-        } finally {
-            reader.close();
-        }
+        return dbContacts;
     }
 }
