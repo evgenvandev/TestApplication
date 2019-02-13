@@ -40,8 +40,8 @@ public class StartMain {
 
         Scanner reader = new Scanner(System.in);
         try {
-            String exit = "no";
-            while (!exit.equals("yes")) {
+            String exit = "нет";
+            while (!exit.equals("да")) {
                 System.out.println("Введите Фамилию Имя Отчество:");
                 String lastName = reader.nextLine();
                 Contact findCon = dbContacts.findContact(lastName);
@@ -51,7 +51,7 @@ public class StartMain {
                 } else {
                     System.out.println("Такой Фамилии Имени Отчества нет в базе данных.");
                 }
-                System.out.println("Exit : yes/no ?");
+                System.out.println("Выйти из программы : да/нет ?");
                 exit = reader.nextLine();
             }
         } finally {

@@ -11,22 +11,34 @@ import java.util.Map;
  */
 public class DbContact {
 
-    // Field for storage contacts
+    /**
+     *  Field for storage contacts
+     */
     private Map<String, List<String>> dbContacts;
 
-    // Constructor for initialization field dbContacts
+    /**
+     *  Constructor for initialization field dbContacts
+     *  without parameters
+     */
     public DbContact() {
         dbContacts = new HashMap<String, List<String>>();
     }
 
-    // Adding contact to DataBase contact
+    /**
+     *  Adding contact to DataBase contact
+     *  @param contact
+     */
     public void addContact(Contact contact) {
 
        dbContacts.put(contact.getLastName(), contact.getNumberPhone());
     }
 
 
-    // Find contact in DataBase contacts
+    /**
+     *  Find contact in DataBase contacts
+     *  @param lastName
+     *  @return Contact contact
+     */
     public Contact findContact(String lastName) {
         Contact contact = null;
         if (dbContacts.containsKey(lastName)) {
@@ -37,13 +49,18 @@ public class DbContact {
         return contact;
     }
 
-    // Display count contacts
+    /**
+     *  Display count contacts
+     *  @return int size dbContacts
+     */
     public int countContacts() {
 
         return dbContacts.size();
     }
 
-    // Display list contacts
+    /**
+     *  Display list contacts
+     */
     public void displayContacts() {
 
         for (Map.Entry<String, List<String>> listEntry : dbContacts.entrySet()) {

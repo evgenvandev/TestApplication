@@ -7,13 +7,20 @@ import java.util.List;
  */
 public class Contact {
 
-    // Last name
+    /**
+     * Last name
+     */
     private String lastName;
 
-    // List number phone
+    /**
+     * List number phone
+     */
     private List<String> numberPhone;
 
-    // Cunstructor with two arguments
+    /**
+     * Cunstructor with two arguments
+     * @param lastName, numberPhone
+     */
     public Contact(String lastName, List<String> numberPhone) {
         this.lastName = lastName;
         this.numberPhone = numberPhone;
@@ -37,18 +44,24 @@ public class Contact {
     }
     // End block getters and setters
 
-    // Display ranging list phones
+    /**
+     * Display ranging list phones
+     * @return String ranging list phones
+     */
     public String rangingPhones() {
         String rangStr = "";
+        int i = 1;
         for (String number : numberPhone) {
-            int i = 1;
-            rangStr = String.format("%s%s", rangStr, String.format("%d %s\n", i, number));
+            rangStr = String.format("%s%s", rangStr, String.format("%d. %s\n", i, number));
             i++;
         }
         return rangStr;
     }
 
-    // String representation contact
+    /**
+     * String representation contact
+     * @return String contact
+     */
     @Override
     public String toString() {
         return String.format("Фамилия Имя Отчество: %s\n" +
